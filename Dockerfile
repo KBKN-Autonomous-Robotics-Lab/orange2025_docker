@@ -122,7 +122,7 @@ RUN git clone https://github.com/KBKN-Autonomous-Robotics-Lab/orange2025.git && 
 # Clone packages related to livox and setup ip address
 RUN mkdir livox && cd livox && \
     git clone https://github.com/Ericsii/livox_ros_driver2.git && \
-    git clone https://github.com/porizou/livox_to_pointcloud2.git && \
+    git clone https://github.com/KBKN-Autonomous-Robotics-Lab/livox_to_pointcloud2.git && \
     sed -i "s/192.168.1.5/192.168.3.1/g" ~/ros2_ws/src/livox/livox_ros_driver2/config/MID360_config.json && \
     sed -i "s/192.168.1.12/192.168.3.201/g" ~/ros2_ws/src/livox/livox_ros_driver2/config/MID360_config.json 
 

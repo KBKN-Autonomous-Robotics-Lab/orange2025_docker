@@ -140,15 +140,6 @@ RUN /bin/bash -c "source /opt/ros/humble/setup.bash; colcon build"
 
 # Update .bashrc with custom aliases
 RUN echo "" >> ~/.bashrc && \
-    echo "# Default ID is 0, unique number if network is shared" >> ~/.bashrc && \
-    echo "ID=0" >> ~/.bashrc && \
-    echo "if [ \$ID -eq 0 ]; then" >> ~/.bashrc && \
-    echo "  export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST" >> ~/.bashrc && \
-    echo "else" >> ~/.bashrc && \
-    echo "  export ROS_DOMAIN_ID=\$ID" >> ~/.bashrc && \
-    echo "  export ROS_AUTOMATIC_DISCOVERY_RANGE=SUBNET" >> ~/.bashrc && \
-    echo "fi" >> ~/.bashrc && \
-    echo "" >> ~/.bashrc && \
     echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc && \
     echo "alias cm='cd ~/ros2_ws;colcon build;source ~/.bashrc'" >> ~/.bashrc && \
     echo "alias cs='cd ~/ros2_ws/src'" >> ~/.bashrc && \

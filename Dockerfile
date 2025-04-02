@@ -122,7 +122,7 @@ RUN git clone https://github.com/KBKN-Autonomous-Robotics-Lab/orange2025.git && 
 # Clone packages related to livox and setup ip address
 RUN mkdir livox && cd livox && \
     git clone https://github.com/Ericsii/livox_ros_driver2.git && \
-    git clone https://github.com/porizou/livox_to_pointcloud2.git && \
+    git clone https://github.com/KBKN-Autonomous-Robotics-Lab/livox_to_pointcloud2.git && \
     sed -i "s/192.168.1.5/192.168.3.1/g" ~/ros2_ws/src/livox/livox_ros_driver2/config/MID360_config.json && \
     sed -i "s/192.168.1.12/192.168.3.201/g" ~/ros2_ws/src/livox/livox_ros_driver2/config/MID360_config.json 
 
@@ -139,7 +139,8 @@ WORKDIR /home/ubuntu/ros2_ws
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash; colcon build"
 
 # Update .bashrc with custom aliases
-RUN echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc && \
+RUN echo "" >> ~/.bashrc && \
+    echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc && \
     echo "alias cm='cd ~/ros2_ws;colcon build;source ~/.bashrc'" >> ~/.bashrc && \
     echo "alias cs='cd ~/ros2_ws/src'" >> ~/.bashrc && \
     echo "alias cw='cd ~/ros2_ws'" >> ~/.bashrc && \

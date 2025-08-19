@@ -64,8 +64,12 @@ ARG INSTALL_PACKAGE=desktop
 
 RUN apt-get update -q && \
     apt-get install -y curl gnupg2 lsb-release && \
+    # 古いキーを削除
+    apt-key del F42ED6FBAB17C654 || true && \
+    # 新しいキーを追加
     curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" \
+    | tee /etc/apt/sources.list.d/ros2.list > /dev/null && \
     apt-get update -q && \
     apt-get install -y ros-${ROS_DISTRO}-${INSTALL_PACKAGE} \
     python3-argcomplete \
